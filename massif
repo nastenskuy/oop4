@@ -1,0 +1,201 @@
+//Одновимірні масиви
+//Завдання №1
+Console.Write("Напишіть скільки елементів має містити даний масив - ");
+int e = Convert.ToInt32(Console.ReadLine());
+int[] result = new int[e];
+for (int b = 0; b < e; b++)
+{
+    Console.Write($"Елемент {b + 1} - ");
+    result[b] = Convert.ToInt32(Console.ReadLine());
+}
+double a = CalculateAverage(result);
+Console.WriteLine($"Отже, середнє арифметичне = {a}");
+static double CalculateAverage(int[] arr)
+{
+    if (arr.Length == 0)
+    {
+        return 0;
+    }
+
+    int sum = 0;
+
+    foreach (int element in arr)
+    {
+        sum += element;
+    }
+
+    return (double)sum / arr.Length;
+}
+//Завдання №2
+{
+    Console.Write("Напишіть скільки елементів має містити даний масив - ");
+    int dimension = Convert.ToInt32(Console.ReadLine());
+    char[] arr = new char[dimension];
+    for (int i = 0; i < dimension; i++)
+    {
+        Console.Write($"Елемент {i + 1} - ");
+        arr[i] = Convert.ToChar(Console.ReadLine());
+    }
+    bool p = CheckPalindrome(arr);
+    if (p)
+    {
+        Console.WriteLine("ТАК! Цей масив читається однаково зліва направо і справа наліво");
+    }
+    else
+    {
+        Console.WriteLine("Ні! Цей масив не читається однаково зліва направо і справа наліво ");
+    }
+}
+static bool CheckPalindrome(char[] a2)
+{
+    int b = 0;
+    int j = a2.Length - 1;
+
+    while (b < j)
+    {
+        if (a2[b] != a2[j])
+        {
+            return false;
+        }
+        b++;
+        j--;
+    }
+
+    return true;
+}
+
+//Завдання №3
+Console.Write("Напишіть скільки елементів має містити масив - ");
+int dimension = Convert.ToInt32(Console.ReadLine());
+int[] arr = new int[dimension];
+for (int i = 0; i < dimension; i++)
+{
+    Console.Write($"Напишіть елемент №{i + 1}: ");
+    arr[i] = Convert.ToInt32(Console.ReadLine());
+}
+
+Console.WriteLine("З усіх елементів парними є - ");
+foreach (var element in arr)
+{
+    if (IsEven(element))
+    {
+        Console.WriteLine(element);
+    }
+}
+static bool IsEven(int s)
+{
+    return s % 2 == 0;
+}
+//Завдання №4
+Console.Write("Напишіть скільки елементів має містити масив - ");
+int dimension = Convert.ToInt32(Console.ReadLine());
+int[] arr = new int[dimension];
+for (int i = 0; i < dimension; i++)
+{
+    Console.Write($"Елемент №{i + 1}: ");
+    arr[i] = Convert.ToInt32(Console.ReadLine());
+}
+int sum = CalculatePositiveSum(arr);
+Console.WriteLine($"Сума елементів масиву = {sum}");
+
+static int CalculatePositiveSum(int[] a)
+{
+    int sum = 0;
+
+    foreach (var item in a)
+    {
+        if (item > 0)
+        {
+            sum += item;
+        }
+    }
+
+    return sum;
+}
+//Завдання №5
+Console.Write("Напишіть скільки елементів має містити масив - ");
+int dimension = Convert.ToInt32(Console.ReadLine());
+int[] arr = new int[dimension];
+for (int n = 0; n < dimension; n++)
+{
+    Console.Write($"Елемент №{n + 1}: ");
+    arr[n] = Convert.ToInt32(Console.ReadLine());
+}
+Console.Write("Напишіть будь-яке число для його найменшого індексу - ");
+int e = Convert.ToInt32(Console.ReadLine());
+int minimum = FindMinIndex(arr, e);
+
+if (minimum != -1)
+{
+    Console.WriteLine($"Результат - {minimum}");
+}
+else
+{
+    Console.WriteLine($"{e} - такого елемента немає");
+}
+
+static int FindMinIndex(int[] a, int lookFor)
+{int minimum = -1;
+
+    for (int n = 0; n < a.Length; n++)
+    {
+        if (a[n] == lookFor && (minimum == -1 || n < minimum))
+        {
+            minimum = n;
+        }
+    }
+
+    return minimum;
+}
+//Завдання№6
+Console.Write("Напишіть скільки елементів має містити масив - ");
+int dimension = Convert.ToInt32(Console.ReadLine());
+int[] arr = new int[dimension];
+for (int n = 0; n < dimension; n++)
+{
+    Console.Write($"Елемент №{n + 1}: ");
+    arr[n] = Convert.ToInt32(Console.ReadLine());
+}
+int vr = CalculateNegativeProduct(arr);
+Console.WriteLine($"Обчислений добуток всіх від’ємних елементів у заданому масиві - {vr}");
+static int CalculateNegativeProduct(int[] a)
+{
+    int result = 1;
+
+    foreach (var item in a)
+    {
+        if (item < 0)
+        {
+            result *= item;
+        }
+    }
+
+    return result;
+}
+//Багатовимірні масиви 
+//Завдання №1
+Console.Write("Напишіть розмір матриці - ");
+int dimension = Convert.ToInt32(Console.ReadLine());
+int[,] resultM = new int[dimension, dimension];
+for (int n = 0; n < dimension; n++)
+{
+    for (int m = 0; m < dimension; m++)
+    {
+        Console.Write($"Елемент [{n + 1};{m + 1}] ");
+        resultM[n, m] = Convert.ToInt32(Console.ReadLine());
+    }
+}
+int mainD = CalculateDiagonalSum(resultM);
+Console.WriteLine($"Отже, сума по головній діагоналі = {mainD}");
+
+static int CalculateDiagonalSum(int[,] matrix)
+{
+    int sum = 0;
+
+    for (int n = 0; n < matrix.GetLength(0); n++)
+    {
+        sum += matrix[n, n];
+    }
+
+    return sum;
+}
